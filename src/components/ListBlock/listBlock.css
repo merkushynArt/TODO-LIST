@@ -1,0 +1,78 @@
+.list {
+   display: flex;
+   flex-direction: column;
+   row-gap:  20px;
+}
+
+.item {
+   display: flex;
+   column-gap: 50px;
+}
+
+.itemLeft {
+   width: calc(60% - 25px);
+}
+
+.itemRight {
+   width: calc(40% - 25px);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.priority {
+   display: flex;
+   column-gap: 10px;
+   column-gap: 10px;
+   align-items: center;
+}
+
+.priorityCircle {
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+}
+
+.date {
+   display: flex;
+   align-items: center;
+   column-gap: 15px;
+}
+
+.dateIcon {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   background: transparent;
+   transition: .2s linear;
+}
+
+.dateIcon:hover{
+   background: #2E3035;
+}
+
+.dateIcon svg {
+   transition: .2s linear;
+}
+
+.dateIcon:hover svg {
+   transition: .2s linear;
+   fill: #fff;
+}
+
+.action {
+   display: flex;
+   align-items: center;
+   column-gap: 15px;
+}
+
+.actionDelete {
+   font-size: 22px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+}
