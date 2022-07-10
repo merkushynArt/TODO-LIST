@@ -2,12 +2,12 @@ import React from 'react';
 import './statusBlock.css';
 import { Button } from "react-bootstrap";
 
-const StatusBlock = () => {
+const StatusBlock = ({tasks}) => {
    return (
       <div className='buttons'>
-         <Button variant="primary">Total: 5</Button>
-         <Button variant="success">Success: 2</Button>
-         <Button variant="warning">Pending: 3</Button>
+         <Button variant="primary">Total: {tasks.length}</Button>
+         <Button variant="success">Success: {tasks.filter((item) => item.success).length}</Button>
+         <Button variant="warning">Pending: {tasks.filter((item) => item.pending).length}</Button>
       </div>
    )
 }

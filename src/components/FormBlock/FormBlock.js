@@ -29,10 +29,27 @@ const FormBlock = ({tasks, setTasks}) => {
       }
    };
 
+   const addTask2 = (e) => {
+      if(e.key === 'Enter') {
+         setTasks([...tasks, {
+            id: uuidv4(),
+            title: title,
+            priority: 'None',
+            date: toDate(new Date),
+            success: false,
+            pending: true,
+            tags: [],
+            description: ''
+         }])
+         setTitle('')
+      }
+   }
+
    return (
       <>
          <InputGroup className="mb-3">
             <FormControl
+               onKeyPress={addTask2}
                value={title}
                placeholder="Enter new Todo"
                aria-label="Recipient's username"

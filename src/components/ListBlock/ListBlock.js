@@ -14,7 +14,7 @@ const ListBlock = ({tasks, setTasks}) => {
    const successHandler = (id) => {
       setTasks(tasks.map((el) => {
          if(el.id === id) {
-            return {...el, success: !el.success}
+            return {...el, success: !el.success, pending: !el.pending}
          } else {
             return el
          }
