@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './formBlock.css';
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 
 const FormBlock = ({tasks, setTasks}) => {
+   const [title, setTitle] = useState('');
+
+   const toDate = (date) => {
+      return new Intl.DateTimeFormat('en-En', {
+         day: '2-digit',
+         month: 'short'
+      }).format(new Date(date))
+   }
+
    const addTask = () => {
-      setTasks([...tasks, {
-         id: uuidv4(),
-         title: 'Убрать дома',
-         priority: 'hight',
-         date: 'jul 19',
-         success: false,
-         pending: true,
-         tags: ['home'],
-         description: ''
-      }])
+      if(title.trim().length){
+         setTasks([...tasks, {
+            id: uuidv4(),
+            title: title,
+            priority: 'None',
+            date: toDate(new Date),
+            success: false,
+            pending: true,
+            tags: [],
+            description: ''
+         }])
+         setTitle('')
+      }
    };
 
    return (
       <>
          <InputGroup className="mb-3">
             <FormControl
+               value={title}
                placeholder="Enter new Todo"
                aria-label="Recipient's username"
                aria-describedby="basic-addon2"
+               onChange={(e) => setTitle(e.target.value)}
             />
             <Button variant="outline-secondary" id="button-addon2" onClick={addTask} >
                Button

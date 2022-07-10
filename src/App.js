@@ -25,7 +25,7 @@ function App() {
                <h1 className="App__title">TODO-LIST</h1>
                <StatusBlock/>
                <FormBlock setTasks={setTasks} tasks={tasks} />
-               <ListBlock tasks={tasks}/>
+               <ListBlock setTasks={setTasks} tasks={tasks}/>
                <p className="App__clear">Clear All</p>
             </div>
          </div>
