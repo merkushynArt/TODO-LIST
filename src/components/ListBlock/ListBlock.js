@@ -3,7 +3,7 @@ import './listBlock.css';
 import {AiFillTag} from 'react-icons/ai';
 import { MdDelete } from "react-icons/md";
 
-const ListBlock = ({tasks, setTasks}) => {
+const ListBlock = ({tasks, setTasks, status}) => {
 
    const delTask = (id) => {
       setTasks(tasks.filter((elem) => {
@@ -24,7 +24,15 @@ const ListBlock = ({tasks, setTasks}) => {
    return (
       <ul className='list'>
          {
-            tasks.map((task) => (
+            tasks.filter((task) => {
+               if(status === 'Pending') {
+                  return task.pending
+               } else if(status === 'Success') {
+                  return task.success
+               } else {
+                  return task
+               }
+            }).map((task) => (
                <li className='item' style={{opacity: task.success ? '50%' : '100%'}} key={task.id}>
                   <div className='itemLeft'>
                      <p style={{textDecoration: task.success ? 'red line-through' : 'none'}}>{task.title}</p>

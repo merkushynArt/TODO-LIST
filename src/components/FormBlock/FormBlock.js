@@ -30,7 +30,7 @@ const FormBlock = ({tasks, setTasks}) => {
    };
 
    const addTask2 = (e) => {
-      if(e.key === 'Enter') {
+      if(e.key === 'Enter' && title.trim().length) {
          setTasks([...tasks, {
             id: uuidv4(),
             title: title,
