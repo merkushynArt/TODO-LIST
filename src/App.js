@@ -4,6 +4,7 @@ import FormBlock from "./components/FormBlock/FormBlock";
 import ListBlock from "./components/ListBlock/ListBlock";
 import StatusBlock from "./components/StatusBlock/StatusBlock";
 import './style.css';
+import MyVerticallyCenteredModal from './components/Popup/Popup'
 
 
 function App() {
@@ -22,6 +23,20 @@ function App() {
 
    const [status, setStatus] = useState('Total');
 
+   const [modalShow, setModalShow] = useState(false);
+
+   const [modalShowObj, setModalShowObj] = useState({
+      success: null,
+      pending: null,
+      date: null,
+      title: '',
+      isOpen: false,
+      description: '',
+      priority: '',
+      tags: [],
+      id: null
+   })
+
    return (
       <div className="App">
          <div className="container">
@@ -37,17 +52,20 @@ function App() {
                         <p>Список выполненых задач пуст</p>
                      :
                      <>
-                        <ListBlock status={status} setTasks={setTasks} tasks={tasks} setStatus={setStatus} />
+                        <ListBlock setModalShowObj={setModalShowObj} modalShow={modalShow} setModalShow={setModalShow} status={status} setTasks={setTasks} tasks={tasks} setStatus={setStatus} />
                         <p className="App__clear" onClick={() => setTasks([])}>
                            Clear All
                            <MdDelete/>
                         </p>
                      </>
-                  
                }
-               
             </div>
          </div>
+         <MyVerticallyCenteredModal
+            obj={modalShowObj}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+         />
       </div>
    );
 }

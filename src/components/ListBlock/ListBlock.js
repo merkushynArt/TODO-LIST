@@ -3,7 +3,8 @@ import './listBlock.css';
 import {AiFillTag} from 'react-icons/ai';
 import { MdDelete } from "react-icons/md";
 
-const ListBlock = ({tasks, setTasks, status}) => {
+
+const ListBlock = ({tasks, setTasks, status, setModalShow, modalShow, obj, modalShowObj, setModalShowObj}) => {
 
    const delTask = (id) => {
       setTasks(tasks.filter((elem) => {
@@ -33,29 +34,34 @@ const ListBlock = ({tasks, setTasks, status}) => {
                   return task
                }
             }).map((task) => (
-               <li className='item' style={{opacity: task.success ? '50%' : '100%'}} key={task.id}>
-                  <div className='itemLeft'>
-                     <p style={{textDecoration: task.success ? 'red line-through' : 'none'}}>{task.title}</p>
-                  </div>
-                  <div className='itemRight'>
-                     <div className='priority'>
-                        <div className='priorityCircle' style={{background: 'red'}}></div>
-                        <span>{task.priority} priority</span>
+               <>
+                  <li className='item' style={{opacity: task.success ? '50%' : '100%'}} key={task.id} onClick={() => {
+                        setModalShow(true);
+                        setModalShowObj(task);
+                     }}>
+                     <div className='itemLeft'>
+                        <p style={{textDecoration: task.success ? 'red line-through' : 'none'}}>{task.title}</p>
                      </div>
-                     <div className='date'>
-                        <div className='dateIcon'>
-                           <AiFillTag/>
+                     <div className='itemRight'>
+                        <div className='priority'>
+                           <div className='priorityCircle' style={{background: 'red'}}></div>
+                           <span>{task.priority} priority</span>
                         </div>
-                        <span>{task.date}</span>
-                     </div>
-                     <div className='action'>
-                        <input type="checkbox" checked={task.success} onChange={() => successHandler(task.id)}/>
-                        <div className='actionDelete' onClick={() => delTask(task.id)}>
-                           <MdDelete/>
+                        <div className='date'>
+                           <div className='dateIcon'>
+                              <AiFillTag/>
+                           </div>
+                           <span>{task.date}</span>
+                        </div>
+                        <div className='action'>
+                           <input type="checkbox" checked={task.success} onChange={() => successHandler(task.id)}/>
+                           <div className='actionDelete' onClick={() => delTask(task.id)}>
+                              <MdDelete/>
+                           </div>
                         </div>
                      </div>
-                  </div>
-               </li>
+                  </li>
+               </>
             ))
          }
       </ul>
