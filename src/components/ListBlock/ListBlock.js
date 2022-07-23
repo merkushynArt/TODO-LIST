@@ -54,7 +54,7 @@ const ListBlock = ({tasks, setTasks, status, setModalShow, modalShow, obj, modal
                            </div>
                            <span>{task.date}</span>
                         </div>
-                        <div className='action'>
+                        <div className='action' onClick={(e) => e.stopPropagation()}>
                            <input type="checkbox" checked={task.success} onChange={() => successHandler(task.id)}/>
                            <div className='actionDelete' onClick={() => delTask(task.id)}>
                               <MdDelete/>

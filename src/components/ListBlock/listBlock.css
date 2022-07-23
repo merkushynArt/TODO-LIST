@@ -1,16 +1,30 @@
 .list {
    display: flex;
    flex-direction: column;
-   row-gap:  20px;
+   row-gap:  10px;
 }
 
 .item {
+   padding: 0 5px;
+   border-radius: 5px;
    display: flex;
    column-gap: 50px;
+   cursor: pointer;
+   transition: all .2s linear;
+}
+
+.item:hover {
+   background: rgb(228, 226, 226);
 }
 
 .itemLeft {
    width: calc(60% - 25px);
+   display: flex;
+   align-items: center;
+}
+
+.itemLeft p {
+   margin-bottom: 0;
 }
 
 .itemRight {
