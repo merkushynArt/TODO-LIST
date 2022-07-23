@@ -4,7 +4,7 @@ import {AiFillTag} from 'react-icons/ai';
 import { MdDelete } from "react-icons/md";
 
 
-const ListBlock = ({tasks, setTasks, status, setModalShow, modalShow, obj, modalShowObj, setModalShowObj}) => {
+const ListBlock = ({tasks, setTasks, status, setModalShow, modalShow, obj, modalShowObj, setModalShowObj, setCheck}) => {
 
    const delTask = (id) => {
       setTasks(tasks.filter((elem) => {
@@ -38,13 +38,14 @@ const ListBlock = ({tasks, setTasks, status, setModalShow, modalShow, obj, modal
                   <li className='item' style={{opacity: task.success ? '50%' : '100%'}} key={task.id} onClick={() => {
                         setModalShow(true);
                         setModalShowObj(task);
+                        setCheck(task.priority)
                      }}>
                      <div className='itemLeft'>
                         <p style={{textDecoration: task.success ? 'red line-through' : 'none'}}>{task.title}</p>
                      </div>
                      <div className='itemRight'>
                         <div className='priority'>
-                           <div className='priorityCircle' style={{background: 'red'}}></div>
+                           <div className='priorityCircle' style={{background: task.priority === 'Hight' ? 'red' : task.priority === 'Medium' ? 'yellow' : task.priority === 'Low' ? 'blue' : 'black'}}></div>
                            <span>{task.priority} priority</span>
                         </div>
                         <div className='date'>

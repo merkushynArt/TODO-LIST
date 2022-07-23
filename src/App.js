@@ -12,7 +12,7 @@ function App() {
       {
          id: 1,
          title: 'Сходить в магазин',
-         priority: 'medium',
+         priority: 'Medium',
          date: 'jul 19',
          success: false,
          pending: true,
@@ -24,6 +24,8 @@ function App() {
    const [status, setStatus] = useState('Total');
 
    const [modalShow, setModalShow] = useState(false);
+
+   const [check, setCheck] = useState('');
 
    const [modalShowObj, setModalShowObj] = useState({
       success: null,
@@ -52,7 +54,7 @@ function App() {
                         <p>Список выполненых задач пуст</p>
                      :
                      <>
-                        <ListBlock setModalShowObj={setModalShowObj} modalShow={modalShow} setModalShow={setModalShow} status={status} setTasks={setTasks} tasks={tasks} setStatus={setStatus} />
+                        <ListBlock setCheck={setCheck} setModalShowObj={setModalShowObj} modalShow={modalShow} setModalShow={setModalShow} status={status} setTasks={setTasks} tasks={tasks} setStatus={setStatus} />
                         <p className="App__clear" onClick={() => setTasks([])}>
                            Clear All
                            <MdDelete/>
@@ -62,7 +64,11 @@ function App() {
             </div>
          </div>
          <MyVerticallyCenteredModal
-            obj={modalShowObj}
+            tasks={tasks}
+            setTasks={setTasks}
+            modalShowObj={modalShowObj}
+            check={check}
+            setCheck={setCheck}
             show={modalShow}
             onHide={() => setModalShow(false)}
          />

@@ -1,0 +1,7 @@
+.form-check-input.is-valid:checked {
+   background-color: blue !important;
+   transition: all .5s linear;
+}
+.form-check-input.is-valid~.form-check-label {
+   color: black !important;
+}
