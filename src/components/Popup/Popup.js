@@ -3,23 +3,26 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 import { AiFillTag } from 'react-icons/ai';
+import { FiEdit } from "react-icons/fi";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 
 const MyVerticallyCenteredModal = (props) => {
-   const {check, setCheck, modalShowObj, tasks, setTasks} = props;
+   const {check, setCheck, modalShowObj, tasks, setTasks, setIsTitleChange, isTitleChange} = props;
+
+   const [title, setTitle] = useState('');
 
    let priority = ['Hight', 'Medium', 'Low', 'None'];
 
    const saveChangesHandler = (id) => {
       setTasks(tasks.map((item) => {
          if(id === item.id) {
-            return{...item, priority: check}
+            return{...item, priority: check, title: title.length ? title : item.title}
          }
          return item
       }))
-      props.onHide()
+      props.onHide();
    };
 
    return (
@@ -35,7 +38,17 @@ const MyVerticallyCenteredModal = (props) => {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            <h4>{modalShowObj.title}</h4>
+            <div className='popup__title-block'>
+               {
+                  isTitleChange ? <input className='popup__title-input' defaultValue={modalShowObj.title} type="text" onChange={(e) => setTitle(e.target.value)}/>
+                  : <>
+                     <h4 className='popup__title'>{modalShowObj.title}</h4>
+                     <div className='popup__title-btn' onClick={() => setIsTitleChange(true)}>
+                        <FiEdit/>
+                     </div>
+                  </>
+               }
+            </div>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                <Button style={{width: '45%'}} variant="outline-primary">!!!Priority</Button>
                <Button style={{width: '45%'}} variant="outline-primary"><AiFillTag/> Tags</Button>
@@ -61,7 +74,7 @@ const MyVerticallyCenteredModal = (props) => {
             </div>
          </Modal.Body>
          <Modal.Footer>
-            <Button variant="outline-secondary" onClick={props.onHide}>Close</Button>
+            <Button variant="outline-secondary" onClick={() => props.onHide()}>Close</Button>
             <Button variant="outline-primary" onClick={() => saveChangesHandler(modalShowObj.id)}>Save changes</Button>
          </Modal.Footer>
       </Modal>

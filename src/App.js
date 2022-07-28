@@ -27,6 +27,8 @@ function App() {
 
    const [check, setCheck] = useState('');
 
+   const [isTitleChange, setIsTitleChange] = useState(false);
+
    const [modalShowObj, setModalShowObj] = useState({
       success: null,
       pending: null,
@@ -70,7 +72,12 @@ function App() {
             check={check}
             setCheck={setCheck}
             show={modalShow}
-            onHide={() => setModalShow(false)}
+            isTitleChange={isTitleChange}
+            setIsTitleChange={setIsTitleChange}
+            onHide={() => {
+               setIsTitleChange(false);
+               setModalShow(false);
+            }}
          />
       </div>
    );

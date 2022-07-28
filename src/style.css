@@ -25,3 +25,37 @@
 .App__clear {
    cursor: pointer;
 }
+
+.popup__title-block {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 0 0 20px;
+}
+
+.popup__title {
+   margin-bottom: 0;
+}
+
+.popup__title-btn {
+   font-size: 20px;
+   color:  #000;
+   cursor: pointer;
+   transition: all .2s linear;
+   margin-left: 5px;
+   display: flex;
+   align-items: center;
+}
+
+.popup__title-btn:hover {
+   color: gray;
+}
+
+.popup__title-input {
+   width: 100%;
+   border: 1px solid gray;
+   border-radius: 5px;
+   padding: 5px;
+   font-size: 20px;
+   outline: none;
+}
