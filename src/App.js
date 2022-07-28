@@ -29,6 +29,8 @@ function App() {
 
    const [isTitleChange, setIsTitleChange] = useState(false);
 
+   const [isDescription, setIsDescription] = useState(false);
+
    const [modalShowObj, setModalShowObj] = useState({
       success: null,
       pending: null,
@@ -74,8 +76,11 @@ function App() {
             show={modalShow}
             isTitleChange={isTitleChange}
             setIsTitleChange={setIsTitleChange}
+            isDescription={isDescription}
+            setIsDescription={setIsDescription}
             onHide={() => {
                setIsTitleChange(false);
+               setIsDescription(false);
                setModalShow(false);
             }}
          />

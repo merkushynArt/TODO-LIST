@@ -9,16 +9,18 @@ import { useEffect } from 'react';
 
 
 const MyVerticallyCenteredModal = (props) => {
-   const {check, setCheck, modalShowObj, tasks, setTasks, setIsTitleChange, isTitleChange} = props;
+   const {check, setCheck, modalShowObj, tasks, setTasks, setIsTitleChange, isTitleChange, isDescription, setIsDescription} = props;
 
    const [title, setTitle] = useState('');
+
+   const [description, setDescription] = useState('');
 
    let priority = ['Hight', 'Medium', 'Low', 'None'];
 
    const saveChangesHandler = (id) => {
       setTasks(tasks.map((item) => {
          if(id === item.id) {
-            return{...item, priority: check, title: title.length ? title : item.title}
+            return{...item, priority: check, title: title.length ? title : item.title, description: description.length ? description: item.description}
          }
          return item
       }))
@@ -47,6 +49,21 @@ const MyVerticallyCenteredModal = (props) => {
                         <FiEdit/>
                      </div>
                   </>
+               }
+            </div>
+            <div className="popup__description-block">
+               {
+                  isDescription ? <textarea className='popup__description-textarea' defaultValue={modalShowObj.description} onChange={(e) => setDescription(e.target.value)}/> : <div className='popup__description-wrapper'>
+                     <p style={{marginBottom: '0px'}}>
+                        {modalShowObj.description}
+                     </p>
+                     <span className='popup__description-btn' onClick={() => setIsDescription(true)}>
+                        {
+                           modalShowObj.description.length ? 'Edit ' : 'Add '
+                        }
+                        description
+                     </span>
+                  </div>
                }
             </div>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>

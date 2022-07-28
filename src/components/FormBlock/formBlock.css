@@ -5,3 +5,32 @@
 .form-check-input.is-valid~.form-check-label {
    color: black !important;
 }
+
+.popup__description-block {
+   margin-bottom: 10px;
+}
+
+.popup__description-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.popup__description-btn {
+   cursor: pointer;
+   align-self: flex-end;
+   text-decoration: underline;
+}
+
+.popup__description-textarea {
+   font-size: 16px;
+   line-height: 16px;
+   width: 100%;
+   height: 51px;
+   border: none;
+   border-bottom: 3px solid gray;
+   border-left: 1px solid gray;
+   border-radius: 0 0 10px  10px;
+   outline: none;
+   resize: none;
+}
